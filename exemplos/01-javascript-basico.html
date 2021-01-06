@@ -1,0 +1,101 @@
+<meta charset="utf-8" />
+<h1>JavaScript: variáveis, constantes e tipos</h1>
+<script>
+
+    /*
+    *   1) Proibe a criação de variáveis sem um comando declarativo explícito;
+    *   2) Proibe parâmetros duplicados em uma função;
+    *   3) O uso do comando with;
+    *   4) Modifica o comportamento da palavra-chave this; 
+    */
+    "use strict";
+
+    // variáveis com var: só respeita escopo de função (variável local), caso contrário é sempre global
+    var a = 17;
+    if (true) {
+        var b = a;
+    }
+
+    console.log('Valor de b:', b); // Ok
+
+    function teste1() {
+        var c = 17;
+        console.log("Valor da variável c:", c); // OK exibe 17
+    }
+
+    teste1();
+    // console.log('Valor da variável c fora da função:', c); // ReferenceError
+
+    // ES6: variáveis com "let"
+    let d = 999;
+    if (true) {
+        let e = d;
+        console.log("Valor de e:", e); // Ok
+    }
+
+    // console.log("Valor de e:", e); // ReferenceError
+
+    // Constantes
+    const x = 0;
+    // x = 2; // TypeError
+
+    const listaNomes = ['Adriana', 'Fabiana', 'Rodrigo'];
+    console.log(listaNomes);
+    listaNomes.push('Gabriel');
+    listaNomes.shift();
+    listaNomes[1] = "Henrique";
+    console.log(listaNomes);
+
+    // listaNomes = []; // TypeError
+
+    // Objeto Literal (Genérico)
+    const pessoa = {
+        // propriedades
+        nome: 'Roberto',
+        sobrenome: 'Vasconcelos',
+        idade: 35,
+
+        // método
+        dizerOla: function() {
+            console.log("Olá meu nome é: " + this.nome + "!");
+        }
+    }
+
+    pessoa.nome = "Gabriel"; // Ok - alteração de propriedades é permitida
+    pessoa.sexo = "M"; // Ok - criaçaõ de propriedades novas é permitida
+    pessoa.dizerOla();
+
+    // pessoa = {}; // TypeError
+
+
+    // HOISTING
+    // Funções no JavaScript - Function Declaration
+    somar(5, 3);
+    function somar(valor1, valor2) {
+        console.log("Resultado: ", valor1 + valor2);
+    }
+
+    // Function Expression (Não tem Hoisting)
+    // somar2(8, 2); // ReferenceError
+    const somar2 = function(v1, v2) {
+        console.log('Resultado 2: ', v1 + v2);
+    }
+    somar2(8, 2); // OK
+
+    // escopo vazio
+    {
+        function teste2(nome)
+        {
+            console.log('Seu nome é: ', nome);
+            return "Teste";
+        }
+
+        // Exporta a função teste2 para o escopo global
+        // window.testeFuncao = teste2;
+    }
+
+    // testeFuncao('Pedro');
+    // teste2('Ana');
+    
+
+</script>

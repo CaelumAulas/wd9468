@@ -1,0 +1,61 @@
+<meta charset="utf-8" />
+<h1>JavaScript: querySelector e querySelectorAll</h1>
+<style>
+
+    p {
+        background-color: #f2f2f2;
+        border: 1px solid #ddd;
+        padding: 15px;
+    }
+
+    .vermelho {
+        background-color: #fff0f0;
+        border-color: red;
+        color: red;
+    }
+
+</style>
+
+<p>Parágrafo 1</p>
+<p class="vermelho">Parágrafo 2</p>
+<p>Parágrafo 3</p>
+<p>Parágrafo 4</p>
+<p class="vermelho">Parágrafo 5</p>
+<p class="vermelho">Parágrafo 6</p>
+<span class="vermelho">Span vermelho</span>
+<p>Parágrafo 7</p>
+<p>Parágrafo 8</p>
+<p>Parágrafo 9</p>
+<p id="p10"></p>
+
+<script>
+
+    // DOM vs BOM
+    // DOCUMENT OBJECT MODEL = document (Estrutura HTML)
+    // BROWSER OBJECT MODEL = window 
+    const p10 = document.querySelector('#p10');
+    console.log(p10);
+    p10.textContent = "Texto alterado pelo <b>JavaScript</b>";
+
+    const vermelhos = document.querySelectorAll('.vermelho');
+    console.log(vermelhos);
+
+    for (let i = 0; i < vermelhos.length; i++) 
+    {
+        vermelhos[i].innerHTML = "Vermelhos alterados pelo <b>JS</b>";
+        vermelhos[i].style.fontStyle = "italic";
+    }
+
+    for (let p of vermelhos)
+    {
+        p.innerHTML = "Vermelhos alterados com for...of no JS";
+    }
+    
+    vermelhos.forEach(function(p, index) {
+        p.textContent = `Índice: ${index} - Parágrafo modificado pelo foreach`;
+    });
+
+    // ES6 = Arrow Functions
+    vermelhos.forEach(p => p.textContent = `Parágrafo modificado pelo foreach com arrow functions`);
+
+</script>
