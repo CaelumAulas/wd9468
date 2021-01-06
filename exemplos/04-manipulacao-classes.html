@@ -1,0 +1,71 @@
+<meta charset="utf-8" />
+<h1>JavaScript: manipulação de classes</h1>
+<style>
+
+    button {
+        border: 1px solid #ddd;
+        background-color: #ddd;
+    }
+    button.vermelho {
+        background: #fff0f0;
+        border-color: #db2323;
+    }
+    button.verde {
+        border-color: green;
+        background-color: yellowgreen;
+        color: green;
+    }
+
+</style>
+<button id="btn1">Botão 1</button>
+<button id="btn2" class="vermelho">Botão 2</button>
+<button id="btn3">Botão 3</button>
+<button id="btn4" class="vermelho">Botão 4</button>
+<button id="btn5" class="vermelho">Botão 5</button>
+
+<script>
+
+    // guardar as referências dos botões HTML
+    const btn1 = document.querySelector('#btn1');
+    const btn2 = document.querySelector('#btn2');
+    const btn3 = document.querySelector('#btn3');
+    const btn4 = document.querySelector('#btn4');
+    const btn5 = document.querySelector('#btn5');
+
+    btn1.addEventListener('click', function() {
+        btn1.classList.add('vermelho');
+    });
+
+    btn2.addEventListener('click', function() {
+        btn2.classList.remove('vermelho');
+    });
+
+    btn3.addEventListener('click', function() {
+        btn3.classList.toggle('vermelho');
+    });
+
+    btn4.addEventListener('click', function() {
+        let temClasseVermelho = btn4.classList.contains('vermelho');
+
+        if (temClasseVermelho === true) {
+            alert('O botão tem a classe VERMELHO!');
+        }
+        else {
+            alert('O botão NÃO TEM a classe VERMELHO!');
+        }
+
+        btn4.classList.toggle('vermelho');
+    });
+
+    btn5.addEventListener('click', function() {
+        let temVermelho = btn5.classList.contains('vermelho');
+        if (temVermelho) {
+            btn5.classList.replace('vermelho', 'verde');
+        }
+        else {
+            btn5.classList.replace('verde', 'vermelho');
+        }
+    });
+
+    
+</script>
