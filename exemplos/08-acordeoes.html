@@ -1,0 +1,101 @@
+<meta charset="utf-8" />
+<h1>JavaScript: Web Animation API - Acordeões</h1>
+
+<div class="acordeoes">
+    <div class="acordeao">
+        <h4>Acordeão 1</h4>
+        <div class="conteudo">
+            <div>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. In qui officia tempore saepe sed repudiandae?
+                Eum odio quo reprehenderit nisi esse dolorem id vel, nulla possimus tenetur sed labore amet.
+            </div>
+        </div>
+    </div>
+
+    <div class="acordeao">
+        <h4>Acordeão 2</h4>
+        <div class="conteudo">
+            <div>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. In qui officia tempore saepe sed repudiandae?
+                Eum odio quo reprehenderit nisi esse dolorem id vel, nulla possimus tenetur sed labore amet.
+            </div>
+        </div>
+    </div>
+
+    <div class="acordeao">
+        <h4>Acordeão 3</h4>
+        <div class="conteudo">
+            <div>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. In qui officia tempore saepe sed repudiandae?
+                Eum odio quo reprehenderit nisi esse dolorem id vel, nulla possimus tenetur sed labore amet.
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 16px;
+    }
+
+    .acordeoes {
+        width: 400px;
+    }
+
+    .acordeao {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        overflow: hidden;
+        margin-bottom: 30px;
+    }
+
+    h4 {
+        cursor: pointer;
+        background-color: #eee;
+        margin: 0;
+        padding: 10px 20px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .conteudo {
+        height: 0;
+        overflow: hidden;
+    }
+
+    .conteudo div {
+        padding: 20px;
+    }
+</style>
+
+<script>
+
+    const acordeoes = document.querySelector('.acordeoes');
+    const opcoesAnimacao = {
+        duration: 600,
+        fill: 'forwards'
+    };
+
+    acordeoes.addEventListener('click', event => {
+        let isH4 = event.target.tagName === 'H4';
+        if (isH4 === true) {
+            const divConteudo = event.target.nextElementSibling;
+            let animationHeight = divConteudo.firstElementChild.offsetHeight;
+
+            if (divConteudo.offsetHeight != 0) {
+                animationHeight = 0;
+            }
+
+            divConteudo.animate({ height: animationHeight + 'px' }, opcoesAnimacao);
+
+            const acordeaoAtual = divConteudo.parentElement;
+            for (let acordeao of acordeoes.children)
+            {
+                if (acordeao != acordeaoAtual) {
+                    acordeao.lastElementChild.animate({ height: '0px' }, opcoesAnimacao);
+                }
+            }
+        }
+    });
+
+</script>
