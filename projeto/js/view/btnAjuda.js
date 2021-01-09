@@ -1,3 +1,4 @@
+import { adicionarCartao } from "./mural.js";
 
 const btn = document.querySelector('#btnAjuda');
 btn.addEventListener('click', () => {
@@ -7,6 +8,6 @@ btn.addEventListener('click', () => {
         "Clique no botão 'Linhas' para mudar a exibição dos cartões"
     ];
 
-    mensagens.forEach(msg => alert(msg));
+    mensagens.forEach(msg => adicionarCartao(msg));
 });
 
