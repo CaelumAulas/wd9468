@@ -78,20 +78,28 @@
 
         formulario.addEventListener('submit', event => {
             event.preventDefault();
-            const inputNome = formulario.querySelector('#inputNome');
-            const inputTel = formulario.querySelector('#inputTelefone');
+            const camposObrigatorios = formulario.querySelectorAll('[data-msg]');
+            const valoresCampos = { inputNome: '', inputTelefone: '' };
+            let isValido = true;
 
-            if (inputNome.value.trim() === '') {
-                alert(inputNome.dataset.msg);
-                inputNome.focus();
+            for (let campo of camposObrigatorios) 
+            {
+                if (campo.value.trim() === '') {
+                    alert(campo.dataset.msg);
+                    campo.focus();
+                    isValido = false;
+                    break;
+                }
+                else {
+                    valoresCampos[campo.id] = campo.value;
+                }
             }
-            else if (inputTel.value.trim() === '') {
-                alert(inputTel.dataset.msg);
-                inputTel.focus();
-            }
-            else {
+
+            console.log(valoresCampos);
+            
+            if (isValido === true) {
                 const tr = template.content.firstElementChild.cloneNode(true);
-                tr.innerHTML = tr.innerHTML.replace('{{NOME_CONTATO}}', inputNome.value).replace('{{TELEFONE_CONTATO}}', inputTel.value);
+                tr.innerHTML = tr.innerHTML.replace('{{NOME_CONTATO}}', valoresCampos.inputNome).replace('{{TELEFONE_CONTATO}}', valoresCampos.inputTelefone);
                 tabela.append(tr);
                 formulario.reset();
             }
