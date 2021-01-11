@@ -57,11 +57,24 @@
         </table>
     </div>
 
+    <template id="template-contato">
+        <tr>
+            <td>{{NOME_CONTATO}}</td>
+            <td>{{TELEFONE_CONTATO}}</td>
+            <td>
+                <button class="btn btn-danger btn-sm">
+                    Excluir
+                </button>
+            </td>
+        </tr>
+    </template>
+
     <script>
 
         // Insira sua lógica aqui
         const formulario = document.querySelector('#formCadastro');
         const tabela = document.querySelector('#tabelaContatos');
+        const template = document.querySelector('#template-contato');
 
         formulario.addEventListener('submit', event => {
             event.preventDefault();
@@ -77,16 +90,8 @@
                 inputTel.focus();
             }
             else {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td>${inputNome.value}</td>
-                    <td>${inputTel.value}</td>
-                    <td>
-                        <button class="btn btn-danger btn-sm">
-                            Excluir
-                        </button>
-                    </td>
-                `;
+                const tr = template.content.firstElementChild.cloneNode(true);
+                tr.innerHTML = tr.innerHTML.replace('{{NOME_CONTATO}}', inputNome.value).replace('{{TELEFONE_CONTATO}}', inputTel.value);
                 tabela.append(tr);
                 formulario.reset();
             }
