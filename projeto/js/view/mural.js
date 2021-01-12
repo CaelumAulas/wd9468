@@ -3,11 +3,12 @@ const mural = document.querySelector('.mural');
 const template = document.querySelector('#template-cartao');
 let numeroCartao = 0;
 
-export function adicionarCartao(conteudo)
+export function adicionarCartao(conteudo, cor = '')
 {
     numeroCartao++;
     const cartao = template.content.firstElementChild.cloneNode(true);
     cartao.innerHTML = cartao.innerHTML.replaceAll('{{NUMERO_CARTAO}}', numeroCartao).replace('{{CONTEUDO_CARTAO}}', conteudo);
+    cartao.style.backgroundColor = cor;
     mural.append(cartao);
 }
 
