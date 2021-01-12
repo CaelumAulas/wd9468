@@ -21,5 +21,53 @@
 <script>
 
     // insira a lógica aqui
+    const seletorUsuarios = document.querySelector('#listaUsuarios');
+    const divCard = document.querySelector('.card-body');
+
+    carregarUsuarios();
+    async function carregarUsuarios()
+    {
+        try 
+        {
+            const resposta = await fetch('https://jsonplaceholder.typicode.com/users');
+            const listaUsuarios = await resposta.json();
+
+            listaUsuarios.forEach(function(usuario) {
+                const opcao = document.createElement('option');
+                opcao.value = usuario.id;
+                opcao.textContent = usuario.name;
+                seletorUsuarios.append(opcao);
+            });
+        }
+        catch(erro) {
+            alert('Não foi possível carregar a lista de usuários!');
+        }
+    }
+
+    seletorUsuarios.addEventListener('change', async () => {
+        try 
+        {
+            if (seletorUsuarios.value === "") {
+                divCard.textContent = "Selecione um usuário para exibir seus dados aqui :)";
+            }
+            else {
+                let usuarioId = seletorUsuarios.value;
+                const resposta = await fetch(`https://jsonplaceholder.typicode.com/users/${usuarioId}`);
+                const dadosUsuario = await resposta.json();
+
+                divCard.innerHTML = `
+                    NOME: ${dadosUsuario.name} <br>
+                    USERNAME: ${dadosUsuario.username} <br>
+                    E-MAIL: ${dadosUsuario.email} <br>
+                    CIDADE: ${dadosUsuario.address.city} <br>
+                    SITE: ${dadosUsuario.website}
+                `;
+            }
+        }
+        catch(erro)
+        {
+            alert('Não foi possível buscar dados do usuário escolhido!');
+        }
+    });
 
 </script>
