@@ -1,0 +1,34 @@
+<meta charset="utf-8">
+<h1>AJAX Clássico</h1>
+<button id="btnCarregar">
+    Carregar Dados
+</button>
+<button onclick="alert('Testando...')">
+    Teste
+</button>
+
+<div class="conteudo">
+    <!-- Conteúdo carregado pelo ajax será mostrado aqui -->
+</div>
+
+<script>
+
+    const btn = document.querySelector('#btnCarregar');
+    const div = document.querySelector('.conteudo');
+
+    btn.addEventListener('click', () => {
+        const ajax = new XMLHttpRequest();
+        ajax.open('GET', 'https://jhonatanjacinto.dev/teste.cfm'); // assíncrono
+        ajax.send();
+
+        ajax.addEventListener('load', () => {
+            console.log('Dados carregados: ', ajax.response);
+            div.innerHTML = ajax.response;
+        });
+
+        ajax.addEventListener('error', () => {
+            div.innerHTML = 'Erro ao carregar informações!';
+        });
+    });
+
+</script>

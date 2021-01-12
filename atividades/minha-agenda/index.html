@@ -96,7 +96,7 @@
             }
 
             console.log(valoresCampos);
-            
+
             if (isValido === true) {
                 const tr = template.content.firstElementChild.cloneNode(true);
                 tr.innerHTML = tr.innerHTML.replace('{{NOME_CONTATO}}', valoresCampos.inputNome).replace('{{TELEFONE_CONTATO}}', valoresCampos.inputTelefone);
