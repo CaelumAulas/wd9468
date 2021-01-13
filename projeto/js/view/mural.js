@@ -16,6 +16,20 @@ export function toggleLayout() {
     mural.classList.toggle('mural--linha');
 }
 
+// window.getCartoes = getCartoes;
+export function getCartoes()
+{
+    const cartoes = mural.querySelectorAll('.cartao');
+    const listaCartoes = Array.from(cartoes).map(cartao => {
+        return {
+            conteudo: cartao.querySelector('.cartao-conteudo').textContent.trim(),
+            cor: cartao.style.backgroundColor
+        }
+    });
+
+    return listaCartoes;
+}
+
 // exclusão do cartão no mural
 mural.addEventListener('click', event => {
     if (event.target.classList.contains('opcoesDoCartao-remove') &&
