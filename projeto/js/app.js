@@ -4,3 +4,4 @@ import './view/mural.js';
 import './view/formularioCartao.js';
 import './view/busca.js';
 import './view/btnSync.js';
+import './view/btnLogout.js';

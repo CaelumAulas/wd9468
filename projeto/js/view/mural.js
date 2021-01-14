@@ -1,7 +1,21 @@
+import { getCartoesSalvos } from "../server/sync.js";
 
 const mural = document.querySelector('.mural');
 const template = document.querySelector('#template-cartao');
 let numeroCartao = 0;
+
+// getCartoesSalvos().then(listaCartoesSalvos => {
+//     listaCartoesSalvos.forEach(cartao => {
+//         adicionarCartao(cartao.conteudo, cartao.cor);
+//     });
+// });
+
+(async function () {
+    const listaCartoesSalvos = await getCartoesSalvos();
+    listaCartoesSalvos.forEach(cartao => {
+        adicionarCartao(cartao.conteudo, cartao.cor);
+    });
+})();
 
 export function adicionarCartao(conteudo, cor = '')
 {
