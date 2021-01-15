@@ -6,8 +6,7 @@ const mural = document.querySelector('.mural');
 const template = document.querySelector('#template-cartao');
 let numeroCartao = 0;
 
-IDBSubscribeOnLoadCartoes(exibirCartoes);
-export async function exibirCartoes(listaDeCartoesLocais = []) {
+IDBSubscribeOnLoadCartoes(async function (listaDeCartoesLocais) {
     let listaCartoes = [];
 
     try 
@@ -31,7 +30,7 @@ export async function exibirCartoes(listaDeCartoesLocais = []) {
     listaCartoes.forEach(cartao => {
         adicionarCartao(cartao.conteudo, cartao.cor);
     });
-}
+});
 
 export function adicionarCartao(conteudo, cor = '')
 {

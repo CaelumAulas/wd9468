@@ -22,6 +22,7 @@ async function registrarServiceWorker()
         const registro = await navigator.serviceWorker.register('/projeto/sw.js', {
             updateViaCache: "none"
         });
+        
         console.log('Service Worker registrado: ', registro);
     }
 }

@@ -1,6 +1,6 @@
 import { salvarCartoes } from "../server/sync.js";
 import { excluirCartoesLocais, salvarCartoesStore } from "../storage/db.js";
-import { exibirCartoes, getCartoes } from "./mural.js";
+import { getCartoes } from "./mural.js";
 import { notificar } from "./notificacao.js";
 
 const btnSync = document.querySelector('#btnSync');
@@ -32,7 +32,7 @@ btnSync.addEventListener('click', async function() {
 export async function sincronizar()
 {
     if (confirm('Gostaria de carregar os dados do servidor?')) {
-        await exibirCartoes();
+        window.location.reload();
     }
     else if (confirm('Gostaria de salvar a versão atual do seu mural?')) {
         btnSync.click();
